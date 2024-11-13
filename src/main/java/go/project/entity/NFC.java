@@ -16,6 +16,7 @@ import lombok.Setter;
 public class NFC {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(nullable = false)
     private Integer id;
     private String uid;
     @OneToOne

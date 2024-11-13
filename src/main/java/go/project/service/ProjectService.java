@@ -18,13 +18,12 @@ public class ProjectService {
     @Autowired
     UserRepository userRepository;
 
-    public Optional<Project> getProjectsById(Integer id) {
-        return projectRepository.findProjectById(id);
-
+    public Project findById(Integer id) {
+        return projectRepository.findById(id).orElse(null);
     }
 
     public List<Project> getProjectByUserUid(String uid){
-        User user = userRepository.findByUid(uid);
+        User user = userRepository.findByUid(uid).get();
         return user.getProjectList();
     }
 
@@ -32,6 +31,10 @@ public class ProjectService {
     public List<Project> findAll() {
         List<Project> all = projectRepository.findAll();
         return all;
+    }
+
+    public void save(Project project) {
+        projectRepository.save(project);
     }
 
 
